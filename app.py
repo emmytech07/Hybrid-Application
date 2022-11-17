@@ -18,7 +18,18 @@ driver.implicitly_wait(10)
 
 driver.get('http://google.com')
 sl.sleep(2)
-contexts = driver.contexts
+# contexts = driver.contexts
+#
+# for context in contexts:
+#     print(context)
+#
+# driver.switch_to.context('WEBVIEW_chrome')
 
-for context in contexts:
-    print(context)
+webview = driver.contexts[1]
+
+driver.switch_to.context(webview)
+
+driver.find_element(By.XPATH, "//*[@name='q']").send_keys("Hello Appium !!!")
+
+sl.sleep(2)
+driver.quit()
